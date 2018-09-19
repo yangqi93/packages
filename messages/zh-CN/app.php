@@ -24,7 +24,7 @@ return [
     'Receive' => '入库',
     'Reset' => '重置',
     'Sign' => '签收/查询',
-    'Update' => '',
+    'Update' => '修改',
     'Updated At' => '',
     '修改快递信息: mode' => '',
     'Update Package: mode' => '',
