@@ -77,6 +77,8 @@ class PackageController extends Controller
     {
         $model = new Package();
 
+        $company = Yii::$app->request->get('company', Package::COMPANY_YUANTONG);
+        $model->company = $company;
         $model->received_at = time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
