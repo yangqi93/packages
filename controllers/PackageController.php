@@ -80,6 +80,8 @@ class PackageController extends Controller
         $company = Yii::$app->request->get('company', Package::COMPANY_YUANTONG);
         $model->company = $company;
         $model->received_at = time();
+        $model->signing_at = time();
+        $model->status = Package::STATUS_SIGN;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', $model->sn. ' 签收成功，请继续录入,变更快递公司，请重新选择');
@@ -107,6 +109,7 @@ class PackageController extends Controller
                 $model->signing_at = 0;
             }
             if ($model->save()) {
+                Yii::$app->session->setFlash('success', '更新成功');
                 return $this->redirect(['index']);
             }
         }
