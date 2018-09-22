@@ -63,6 +63,7 @@ class Package extends \yii\db\ActiveRecord
             [['company', 'sn'], 'required'],
             ['status', 'default', 'value' => 0],
             ['received_at', 'default', 'value' => time()],
+            ['phone', 'default', 'value' => 0],
             ['signing_at', 'default', 'value' => 0],
             [['sn'], 'string', 'max' => 50],
             [['address'], 'string', 'max' => 10],

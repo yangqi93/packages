@@ -25,9 +25,9 @@ class PackageController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'create'],
+                        'actions' => ['index', 'create', 'sign', 'update', 'view'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['@', 'admin'],
                     ],
                 ],
             ],
@@ -80,7 +80,8 @@ class PackageController extends Controller
         $model->received_at = time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', '入库成功，请继续录入');
+            return $this->redirect(['create', 'company' => $model->company]);
         }
 
         return $this->render('create', [
