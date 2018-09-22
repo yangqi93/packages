@@ -80,7 +80,7 @@ class PackageController extends Controller
         $model->received_at = time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', '入库成功，请继续录入');
+            Yii::$app->session->setFlash('success', $model->sn. ' 入库成功，请继续录入,变更快递公司，请重新选择');
             return $this->redirect(['create', 'company' => $model->company]);
         }
 
