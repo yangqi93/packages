@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput() ?>
 
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+    <?//= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
     <?= $model->isNewRecord ? null : $form->field($model, 'status')->dropDownList($model->getStatus()) ?>
 

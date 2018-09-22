@@ -60,7 +60,7 @@ class Package extends \yii\db\ActiveRecord
     {
         return [
             [['company', 'phone', 'status', 'received_at', 'signing_at', 'created_at', 'updated_at'], 'integer'],
-            [['company', 'phone', 'sn'], 'required'],
+            [['company', 'sn'], 'required'],
             ['status', 'default', 'value' => 0],
             ['received_at', 'default', 'value' => time()],
             ['signing_at', 'default', 'value' => 0],
