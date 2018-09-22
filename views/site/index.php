@@ -26,14 +26,14 @@ $this->title = Yii::$app->params['shopName'];
 
         <div class="row">
             <div class="col-lg-4">
-                <h2>入库</h2>
+                <h2>签收</h2>
 
-                <p>快件入库，扫描单号即可</p>
+                <p>快件签收入库，扫描单号即可</p>
 
                 <p><a class="btn btn-default" href="<?= Url::to(['package/create']) ?>">操作 &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h2>签收/查询</h2>
+                <h2>查询</h2>
 
                 <p>可根据手机尾号、快递公司、单号、入库日期查询</p>
 
