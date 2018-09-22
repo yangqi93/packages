@@ -8,6 +8,7 @@
 namespace app\assets;
 
 use yii\web\AssetBundle;
+use yii\web\View;
 
 /**
  * Main application asset bundle.
@@ -17,6 +18,7 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+    public $jsOptions = ['position' => View::POS_HEAD];
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'company')->dropDownList($model->getCompanies()) ?>
 
-    <?= $form->field($model, 'sn')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sn')->textInput(['maxlength' => true, 'id' => 'sn']) ?>
 
     <?= $form->field($model, 'phone')->textInput() ?>
 
@@ -28,3 +28,9 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    $(function () {
+        $('#sn').focus().click();
+    })
+</script>
