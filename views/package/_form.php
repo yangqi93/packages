@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'company')->dropDownList($model->getCompanies()) ?>
-
     <?= $form->field($model, 'sn')->textInput(['maxlength' => true, 'id' => 'sn']) ?>
 
     <?= $form->field($model, 'phone')->textInput() ?>

@@ -77,15 +77,16 @@ class PackageController extends Controller
     {
         $model = new Package();
 
-        $company = Yii::$app->request->get('company', Package::COMPANY_YUANTONG);
-        $model->company = $company;
-        $model->received_at = time();
-        $model->signing_at = time();
-        $model->status = Package::STATUS_SIGN;
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', $model->sn. ' 签收成功，请继续录入,变更快递公司，请重新选择');
-            return $this->redirect(['create', 'company' => $model->company]);
+        if (Yii::$app->request->isPost) {
+            $model->received_at = time();
+            $model->signing_at = time();
+            $model->status = Package::STATUS_SIGN;
+            $sn = Yii::$app->request->post()['Package']['sn'];
+            $model->company = $model->checkCompany($sn);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                Yii::$app->session->setFlash('success', $model->sn. ' 签收成功，请继续录入,变更快递公司，请重新选择');
+                return $this->redirect(['create']);
+            }
         }
 
         return $this->render('create', [

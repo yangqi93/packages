@@ -31,6 +31,7 @@ class Package extends \yii\db\ActiveRecord
     const COMPANY_WANXIANG = 010;
     const COMPANY_CAINIAO = 011;
     const COMPANY_JINGDONG = 012;
+    const COMPANY_OTHER = 055;
 
     const STATUS_RECEIVE = 0; //入库
     const STATUS_SIGN = 1; //签收
@@ -98,15 +99,39 @@ class Package extends \yii\db\ActiveRecord
         return [
             self::COMPANY_YUANTONG => '圆通',
             self::COMPANY_ZHONGTONG => '中通',
-            self::COMPANY_BAISHI => '百世汇通',
+            self::COMPANY_BAISHI => '百世汇通/中通',
             self::COMPANY_TIANTIAN => '天天',
             self::COMPANY_YUNDA => '韵达',
             self::COMPANY_SHENTONG => '申通',
             self::COMPANY_YOUZHENG => '邮政',
             self::COMPANY_WANXIANG => '万象物流',
             self::COMPANY_CAINIAO => '菜鸟',
-            self::COMPANY_JINGDONG => '京东'
+            self::COMPANY_JINGDONG => '京东',
+            self::COMPANY_OTHER => '未知'
         ];
+    }
+
+    public function checkCompany($sn)
+    {
+        //圆通
+        if (preg_match("/^8[0-9]{17}$/", $sn)) {
+            return self::COMPANY_YUANTONG;
+        }
+        //中通
+        if (preg_match('/^2[0-9]{11}$/', $sn)) {
+            return self::COMPANY_ZHONGTONG;
+        }
+        //百世
+        if (preg_match('/^7[0-9]{13}$/', $sn)) {
+            return self::COMPANY_BAISHI;
+        }
+        //天天
+        if (preg_match('/^66[0-9]{10}$/', $sn)) {
+            return self::COMPANY_TIANTIAN;
+        }
+
+        //其它
+        return self::COMPANY_OTHER;
     }
 
     /**
