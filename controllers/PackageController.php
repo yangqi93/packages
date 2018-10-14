@@ -84,7 +84,8 @@ class PackageController extends Controller
             $sn = Yii::$app->request->post()['Package']['sn'];
             $model->company = $model->checkCompany($sn);
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                Yii::$app->session->setFlash('success', $model->sn. ' 签收成功，请继续录入,变更快递公司，请重新选择');
+                $companyStr = $model::getCompanies()[$model->company];
+                Yii::$app->session->setFlash('success', "$companyStr $model->sn" . ' 签收成功，请继续录入,变更快递公司，请重新选择');
                 return $this->redirect(['create']);
             }
         }
