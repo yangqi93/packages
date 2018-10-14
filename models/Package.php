@@ -114,7 +114,7 @@ class Package extends \yii\db\ActiveRecord
     public function checkCompany($sn)
     {
         //圆通
-        if (preg_match("/^8[0-9]{17}$/", $sn)) {
+        if (preg_match("/^8[0-9]{11,17}$/", $sn)) {
             return self::COMPANY_YUANTONG;
         }
         //中通
